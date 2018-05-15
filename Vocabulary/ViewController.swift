@@ -8,31 +8,29 @@
 
 import UIKit
 
-class ViewController: UIViewController, Prot {
+class ViewController: UIViewController {
     
     let vocabulary = ["hello", "guys", "how", "bow", "are", "you", "aal", "aah", "aaa", "ara", "ata", "main", "mainly", "on", "the", "plain", "was", "plaint", "in", "pain", "falls"]     //Custom vocabulary
-    let logicsObject = Logics()
+    let logicsObject = Spellchecker()
     var result: String = ""
-//    let vocabulary = Voc()     // Web vocabulary
+//    let vocabulary = Vocabulary()     // Web vocabulary
     @IBOutlet weak var finishTextView: UITextView!
-    @IBOutlet weak var countOfWords: UITextField!
+    @IBOutlet weak var quantityOfWords: UITextField!
     @IBOutlet weak var acticityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var startText: UITextField!
     @IBOutlet weak var buttonCheck: UIButton!
-    var delegator = Logics()
     @IBAction func startTextAction(_ sender: Any) {
     }
     @IBAction func buttonCheckAction(_ sender: Any) {
         let startText = self.startText.text
         acticityIndicator.startAnimating()
-        countOfWords.isHidden = false
+        quantityOfWords.isHidden = false
         let queue = DispatchQueue.global(qos: .utility)
         queue.async{
-            self.result = self.delegator.result(startText: startText, vocabulary: self.vocabulary)
+            self.result = self.logicsObject.result(startText: startText, vocabulary: self.vocabulary, countOfWordsPrint: self.countOfWords)
                 DispatchQueue.main.async {
                     self.finishTextView.text = self.result
                     self.acticityIndicator.stopAnimating()
-                    
                 }
             }
     }
@@ -40,11 +38,13 @@ class ViewController: UIViewController, Prot {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        //Logics().delegate = self
-        delegator.delegate = self
-        countOfWords.isHidden = true
+        quantityOfWords.isHidden = true
+
     }
-    func you(_ info: String) {
-        countOfWords.text = info
+    func countOfWords(quantityOfWords: Int, quantityOfWordsInVocabulary: Int) -> String{
+        DispatchQueue.main.async {
+            self.quantityOfWords.text = "\(quantityOfWords) of \(quantityOfWordsInVocabulary)"
+        }
+        return ""
     }
 }

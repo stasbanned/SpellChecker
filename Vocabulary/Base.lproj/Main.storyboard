@@ -60,8 +60,8 @@
                     </view>
                     <connections>
                         <outlet property="acticityIndicator" destination="OMs-QA-TcG" id="J6N-By-BvY"/>
-                        <outlet property="countOfWords" destination="2Ja-9F-7EK" id="SQx-X2-d5p"/>
                         <outlet property="finishTextView" destination="omP-qg-Wzx" id="KnH-TY-iCF"/>
+                        <outlet property="quantityOfWords" destination="2Ja-9F-7EK" id="Xos-m1-wch"/>
                         <outlet property="startText" destination="G9Z-BF-yuU" id="HSI-Rx-JsM"/>
                     </connections>
                 </viewController>
