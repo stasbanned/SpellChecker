@@ -9,7 +9,6 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
     let vocabulary = ["hello", "guys", "how", "bow", "are", "you", "aal", "aah", "aaa", "ara", "ata", "main", "mainly", "on", "the", "plain", "was", "plaint", "in", "pain", "falls"]     //Custom vocabulary
     let logicsObject = Spellchecker()
     var result: String = ""
@@ -27,7 +26,7 @@ class ViewController: UIViewController {
         quantityOfWords.isHidden = false
         let queue = DispatchQueue.global(qos: .utility)
         queue.async{
-            self.result = self.logicsObject.result(startText: startText, vocabulary: self.vocabulary, countOfWordsPrint: self.countOfWords)
+            self.result = self.logicsObject.checkString(startText: startText, vocabulary: self.vocabulary, countOfWordsPrint: self.countOfWords)
                 DispatchQueue.main.async {
                     self.finishTextView.text = self.result
                     self.acticityIndicator.stopAnimating()
@@ -39,7 +38,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         quantityOfWords.isHidden = true
-
     }
     func countOfWords(quantityOfWords: Int, quantityOfWordsInVocabulary: Int) -> String{
         DispatchQueue.main.async {

@@ -17,7 +17,7 @@ class Spellchecker {
     let alphabetArray = (97...122).map({Character(UnicodeScalar($0))})
     var indexOfDictionaryArray = -1
     var quantityOfWords = 0
-    func result (startText: String?, vocabulary: [String], countOfWordsPrint: @escaping (Int, Int) -> String) -> String {
+    func checkString (startText: String?, vocabulary: [String], countOfWordsPrint: @escaping (Int, Int) -> String) -> String {
 
         quantityOfWords = 0
         finalString = ""
@@ -131,7 +131,7 @@ class Spellchecker {
                 raz: for k in fullArray {
                     if !vocabulary.contains(k) && repeating == 0 {
                         repeating = 1
-                        result(startText: k, vocabulary: vocabulary, countOfWordsPrint: countOfWordsPrint)
+                        checkString(startText: k, vocabulary: vocabulary, countOfWordsPrint: countOfWordsPrint)
                         fullArray = []
                         repeating = 0
                     }
