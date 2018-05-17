@@ -8,7 +8,7 @@
 import UIKit
 
 class Spellchecker {
-    var finalString: String = ""
+    var finalString = ""
     var isCorrectedWord = 0
     var repeating = 0
     var fullArray: [String] = []
@@ -17,12 +17,12 @@ class Spellchecker {
     let alphabetArray = (97...122).map({Character(UnicodeScalar($0))})
     var indexOfDictionaryArray = -1
     var quantityOfWords = 0
-    func checkString (startText: String?, vocabulary: [String], countOfWordsPrint: @escaping (Int, Int) -> String) -> String {
+    func checkString(startText: String?, vocabulary: [String], countOfWordsPrint: @escaping (Int, Int) -> String) -> String {
 
         quantityOfWords = 0
         finalString = ""
-        if repeating == 0 { isCorrectedWord = 0 }
         if repeating == 0 {
+            isCorrectedWord = 0
             checkRepeatString = ""
         }
         var key = -1
@@ -30,7 +30,9 @@ class Spellchecker {
         var arrayOfStartText = startText?.components(separatedBy: " ")
         first: for i in arrayOfStartText! {
             quantityOfWords = 0
-            if repeating == 0 { isCorrectedWord = 0 }
+            if repeating == 0 {
+                isCorrectedWord = 0
+            }
             var string = ""
             indexOfDictionaryArray += 1
             if vocabulary.contains(i) {
@@ -69,7 +71,7 @@ class Spellchecker {
                     }
                     var forLastIndexInserting = 0
                     third: for z in alphabetArray {
-                        if (key + 1) == Array(i).count {
+                        if key + 1 == Array(i).count {
                             forLastIndexInserting += 1
                         }
                         var arrayOfCharsForInserting: [Character] = Array(i)

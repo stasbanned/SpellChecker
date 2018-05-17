@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Spell Checker View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Vocabulary" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="SpellCheckerViewController" customModule="Vocabulary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -70,10 +70,10 @@
             </objects>
             <point key="canvasLocation" x="1249" y="63"/>
         </scene>
-        <!--First View Controller-->
+        <!--Start View Controller-->
         <scene sceneID="TMx-Sa-MP5">
             <objects>
-                <viewController id="Bd3-e9-8Gh" customClass="FirstViewController" customModule="Vocabulary" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Bd3-e9-8Gh" customClass="StartViewController" customModule="Vocabulary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="egj-Id-oV7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -131,13 +131,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="D97-4n-zmW"/>
                     <connections>
-                        <outlet property="checkVocabularyButtonOutlet" destination="tmk-SX-ul5" id="hQF-yU-23s"/>
-                        <outlet property="checkVocabularyTextField" destination="3wr-Z5-X8T" id="Q3l-ey-QAS"/>
-                        <outlet property="checkingProgressBar" destination="Dem-rK-5Fo" id="yep-qr-hWl"/>
-                        <outlet property="downloadButtonOutlet" destination="j1S-Jf-ZuR" id="nGA-Xh-S4w"/>
-                        <outlet property="downloadingProgressBar" destination="Fik-ki-BZY" id="I6K-WL-fkb"/>
-                        <outlet property="goToSecondScreenButtonOutlet" destination="nZh-XS-6jW" id="ZDZ-fH-t8Y"/>
-                        <outlet property="informationAboutVocabulary" destination="26f-Ls-gOD" id="imd-Xb-U2w"/>
+                        <outlet property="checkVocabularyButtonOutlet" destination="tmk-SX-ul5" id="sFu-6f-egj"/>
+                        <outlet property="checkVocabularyLabel" destination="3wr-Z5-X8T" id="P5P-JJ-ezA"/>
+                        <outlet property="checkingProgressBar" destination="Dem-rK-5Fo" id="DIU-Db-dkT"/>
+                        <outlet property="downloadButtonOutlet" destination="j1S-Jf-ZuR" id="Xuh-SJ-CTx"/>
+                        <outlet property="downloadingProgressBar" destination="Fik-ki-BZY" id="yq1-kf-ob1"/>
+                        <outlet property="goToSecondScreenButtonOutlet" destination="nZh-XS-6jW" id="9fI-Oe-2fo"/>
+                        <outlet property="informationAboutVocabularyLabel" destination="26f-Ls-gOD" id="oFh-Ex-YEG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jxG-cM-khq" userLabel="First Responder" sceneMemberID="firstResponder"/>

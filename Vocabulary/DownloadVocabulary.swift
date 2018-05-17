@@ -8,14 +8,22 @@
 
 import UIKit
 
+protocol DownloadVocabularyDelegate: class {
+    func goToNextScreenView(isTrue: Bool)
+    func downloadProggresBarCount(downloadingProgressBar: Float)
+    func downloadProgresBarIsView(isTrue: Bool)
+}
+
 class DownloadVocabulary {
-    var downProgrBar: Float = 0
-    var downProgBarIsView = true
-    var secondScreenButtIsView = true
-    func vocabularyDownloading(vocabulary: [String], downProgrBarFunc: (Float) -> String, secondScreenIsButtFunc: (Bool) -> String, downProgrBarIsViewFunc: (Bool) -> String) {
+    weak var delegate: DownloadVocabularyDelegate?
+    var downloadProgresBar: Float = 0
+    var downloaProgresBarIsView = true
+    var secondScreenButtonIsView = true
+    func vocabularyDownloading(vocabulary: [String]) {
         var string = ""
         do {
-            if let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            if let documentDirectory = FileManager.default.urls(for: .documentDirectory,
+                                                                in: .userDomainMask).first {
                 let fileURL = documentDirectory.appendingPathComponent("file1.txt")
                 do {
                     for i in 0..<vocabulary.count {
@@ -24,17 +32,14 @@ class DownloadVocabulary {
                         } else {
                             string += vocabulary[i]
                         }
-                        
-                        downProgrBar += 1 / Float(vocabulary.count)
-                        downProgrBarFunc(downProgrBar)
+                        downloadProgresBar += 1 / Float(vocabulary.count)
+                        delegate?.downloadProggresBarCount(downloadingProgressBar: downloadProgresBar)
                     }
                     try string.write(to: fileURL, atomically: false, encoding: .utf8)
-                    
-                    secondScreenButtIsView = false
-                    secondScreenIsButtFunc(secondScreenButtIsView)
-                    downProgBarIsView = true
-                    downProgrBarIsViewFunc(downProgBarIsView)
-                    
+                    secondScreenButtonIsView = false
+                    delegate?.goToNextScreenView(isTrue: secondScreenButtonIsView)
+                    secondScreenButtonIsView = true
+                    delegate?.downloadProgresBarIsView(isTrue: secondScreenButtonIsView)
                 } catch {
                     print("error:", error)
                 }

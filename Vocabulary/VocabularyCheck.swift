@@ -8,53 +8,64 @@
 
 import UIKit
 
+protocol VocabularyCheckDelegate: class {
+    func checkProgresBarBool(isTrue: Bool)
+    func infoAboutVocabulary(isTrue: Bool)
+    func infoAboutVocabularyText(infoAboutVocabulary: String)
+    func downloadButtoonIsView(isTrue: Bool)
+    func checkProgresBarCount(checkingProgressBar: Float)
+    func goToNextScreenView(isTrue: Bool)
+}
+
 class VocabularyCheck {
-    var checkProgBarCount: Float = 0
-    var checkProgBarBool = true
-    var infAboutVoc = true
-    var infAboutVocText = ""
-    var downButt = true
+    weak var delegate: VocabularyCheckDelegate?
+    var checkProgresBarCount: Float = 0
+    var checkProgresBarBool = true
+    var infoAboutVocabulary = true
+    var infoAboutVocabularyText = ""
+    var downloadButtoon = true
     var goToNextScreenBool = true
-    func vocabularyChecking(vocabulary: [String], checkProgBarBoolFunc: @escaping (Bool) -> String, infAboutVocFunc: @escaping (Bool) -> String, infAboutVocTextFunc: @escaping (String) -> String, downButtFunc: @escaping (Bool) -> String, checkProgBarCountFunc: @escaping (Float) -> String, goToNextScreenFunc: @escaping (Bool) -> String) {
+    func vocabularyChecking(vocabulary: [String]) {
         var isFileOk = true
         do {
-            if let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            if let documentDirectory = FileManager.default.urls(for: .documentDirectory,
+                                                                in: .userDomainMask).first {
                 let fileURL = documentDirectory.appendingPathComponent("file1.txt")
                 let savedVocabulary = try String(contentsOf: fileURL)
                 if savedVocabulary.components(separatedBy: "\n").count == vocabulary.count {
                     for i in 0..<savedVocabulary.components(separatedBy: "\n").count {
                         if savedVocabulary.components(separatedBy: "\n")[i] == vocabulary[i] {
-                            self.checkProgBarCount += 1 / Float(savedVocabulary.components(separatedBy: "\n").count)
-                            checkProgBarCountFunc(self.checkProgBarCount)
+                            checkProgresBarCount += 1 / Float(savedVocabulary.components(separatedBy: "\n").count)
+                            delegate?.checkProgresBarCount(checkingProgressBar: checkProgresBarCount)
                             continue
                         } else {
-                            self.checkProgBarBool = true
-                            checkProgBarBoolFunc(self.checkProgBarBool)
+                            checkProgresBarBool = true
+                            delegate?.checkProgresBarBool(isTrue: checkProgresBarBool)
                             isFileOk = false
                             break
                         }
                     }
                 } else {
-                    self.checkProgBarBool = true
-                    checkProgBarBoolFunc(self.checkProgBarBool)
+                    checkProgresBarBool = true
+                    delegate?.checkProgresBarBool(isTrue: checkProgresBarBool)
                     isFileOk = false
                 }
-                self.checkProgBarBool = true
-                checkProgBarBoolFunc(self.checkProgBarBool)
+                checkProgresBarBool = true
+                delegate?.checkProgresBarBool(isTrue: checkProgresBarBool)
                 if !isFileOk {
-                    self.infAboutVoc = false
-                    infAboutVocFunc(self.infAboutVoc)
-                    self.infAboutVocText = "File is not OK"
-                    infAboutVocTextFunc(self.infAboutVocText)
-                    self.downButt = false
-                    downButtFunc(self.downButt)
+                    infoAboutVocabulary = false
+                    delegate?.infoAboutVocabulary(isTrue: infoAboutVocabulary)
+                    infoAboutVocabularyText = "File is not OK"
+                    delegate?.infoAboutVocabularyText(infoAboutVocabulary: infoAboutVocabularyText)
+                    downloadButtoon = false
+                    delegate?.downloadButtoonIsView(isTrue: downloadButtoon)
                 } else {
-                    self.infAboutVoc = false
-                    infAboutVocFunc(self.infAboutVoc)
-                    self.infAboutVocText = "File is OK"
-                    infAboutVocTextFunc(self.infAboutVocText)
-                    self.goToNextScreenBool = false
-                    goToNextScreenFunc(self.goToNextScreenBool)
+                    infoAboutVocabulary = false
+                    delegate?.infoAboutVocabulary(isTrue: infoAboutVocabulary)
+                    infoAboutVocabularyText = "File is OK"
+                    delegate?.infoAboutVocabularyText(infoAboutVocabulary: infoAboutVocabularyText)
+                    goToNextScreenBool = false
+                    delegate?.goToNextScreenView(isTrue: goToNextScreenBool)
                 }
             }
         } catch {
