@@ -9,10 +9,14 @@
 import UIKit
 
 class StartViewController: UIViewController, VocabularyCheckDelegate, DownloadVocabularyDelegate {
-    
     let check = VocabularyCheck()
     let download = DownloadVocabulary()
-    let vocabulary = SpellCheckerViewController()
+    let vocabulary = Vocabulary()
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        check.delegate = self
+        download.delegate = self
+    }
     @IBOutlet weak var checkingProgressBar: UIProgressView!
     @IBOutlet weak var checkVocabularyButtonOutlet: UIButton!
     @IBOutlet weak var checkVocabularyLabel: UILabel!
@@ -26,7 +30,7 @@ class StartViewController: UIViewController, VocabularyCheckDelegate, DownloadVo
         checkingProgressBar.progress = 0
         let queue = DispatchQueue.global(qos: .utility)
         queue.async {
-            self.check.vocabularyChecking(vocabulary: self.vocabulary.correctVocabulary)
+            self.check.vocabularyChecking(vocabulary: self.vocabulary.downloadVocabularyFromInternet())
         }
     }
     
@@ -34,7 +38,7 @@ class StartViewController: UIViewController, VocabularyCheckDelegate, DownloadVo
         let queue = DispatchQueue.global(qos: .utility)
         downloadingProgressBar.isHidden = false
         queue.async {
-            self.download.vocabularyDownloading(vocabulary: self.vocabulary.correctVocabulary)
+            self.download.vocabularyDownloading(vocabulary: self.vocabulary.downloadVocabularyFromInternet())
         }
     }
     
@@ -42,8 +46,6 @@ class StartViewController: UIViewController, VocabularyCheckDelegate, DownloadVo
     }
     
     override func viewDidLoad() {
-        check.delegate = self
-        download.delegate = self
         super.viewDidLoad()
         downloadingProgressBar.isHidden = true
         checkingProgressBar.isHidden = true
@@ -59,6 +61,11 @@ class StartViewController: UIViewController, VocabularyCheckDelegate, DownloadVo
     func infoAboutVocabulary(isTrue: Bool) {
         DispatchQueue.main.async {
             self.informationAboutVocabularyLabel.isHidden = isTrue
+            if isTrue {
+                self.informationAboutVocabularyLabel.text = "File is OK"
+            } else {
+                self.informationAboutVocabularyLabel.text = "File is not OK"
+            }
         }
     }
     func infoAboutVocabularyText(infoAboutVocabulary: String) {

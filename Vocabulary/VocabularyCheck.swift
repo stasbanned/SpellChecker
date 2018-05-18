@@ -22,7 +22,6 @@ class VocabularyCheck {
     var checkProgresBarCount: Float = 0
     var checkProgresBarBool = true
     var infoAboutVocabulary = true
-    var infoAboutVocabularyText = ""
     var downloadButtoon = true
     var goToNextScreenBool = true
     func vocabularyChecking(vocabulary: [String]) {
@@ -55,15 +54,11 @@ class VocabularyCheck {
                 if !isFileOk {
                     infoAboutVocabulary = false
                     delegate?.infoAboutVocabulary(isTrue: infoAboutVocabulary)
-                    infoAboutVocabularyText = "File is not OK"
-                    delegate?.infoAboutVocabularyText(infoAboutVocabulary: infoAboutVocabularyText)
                     downloadButtoon = false
                     delegate?.downloadButtoonIsView(isTrue: downloadButtoon)
                 } else {
                     infoAboutVocabulary = false
                     delegate?.infoAboutVocabulary(isTrue: infoAboutVocabulary)
-                    infoAboutVocabularyText = "File is OK"
-                    delegate?.infoAboutVocabularyText(infoAboutVocabulary: infoAboutVocabularyText)
                     goToNextScreenBool = false
                     delegate?.goToNextScreenView(isTrue: goToNextScreenBool)
                 }
