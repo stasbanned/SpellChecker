@@ -9,16 +9,19 @@
 import UIKit
 
 protocol VocabularyCheckDelegate: class {
-    func checkProgresBarBool(isTrue: Bool)
-    func infoAboutVocabulary(isTrue: Bool)
-    func infoAboutVocabularyText(infoAboutVocabulary: String)
-    func downloadButtoonIsView(isTrue: Bool)
-    func checkProgresBarCount(checkingProgressBar: Float)
-    func goToNextScreenView(isTrue: Bool)
+    func checkProgresBarBool(isHidden: Bool)
+    func infoAboutVocabulary(isHidden: Bool)
+    func infoAboutVocabularyText(labelText: String)
+    func downloadButtoonIsView(isHidden: Bool)
+    func checkProgresBarCount(progress: Float)
+    func goToNextScreenView(isHidden: Bool)
 }
 
 class VocabularyCheck {
     weak var delegate: VocabularyCheckDelegate?
+    init(delegate: VocabularyCheckDelegate) {
+        self.delegate = delegate
+    }
     var checkProgresBarCount: Float = 0
     var checkProgresBarBool = true
     var infoAboutVocabulary = true
@@ -35,32 +38,32 @@ class VocabularyCheck {
                     for i in 0..<savedVocabulary.components(separatedBy: "\n").count {
                         if savedVocabulary.components(separatedBy: "\n")[i] == vocabulary[i] {
                             checkProgresBarCount += 1 / Float(savedVocabulary.components(separatedBy: "\n").count)
-                            delegate?.checkProgresBarCount(checkingProgressBar: checkProgresBarCount)
+                            delegate?.checkProgresBarCount(progress: checkProgresBarCount)
                             continue
                         } else {
                             checkProgresBarBool = true
-                            delegate?.checkProgresBarBool(isTrue: checkProgresBarBool)
+                            delegate?.checkProgresBarBool(isHidden: checkProgresBarBool)
                             isFileOk = false
                             break
                         }
                     }
                 } else {
                     checkProgresBarBool = true
-                    delegate?.checkProgresBarBool(isTrue: checkProgresBarBool)
+                    delegate?.checkProgresBarBool(isHidden: checkProgresBarBool)
                     isFileOk = false
                 }
                 checkProgresBarBool = true
-                delegate?.checkProgresBarBool(isTrue: checkProgresBarBool)
+                delegate?.checkProgresBarBool(isHidden: checkProgresBarBool)
                 if !isFileOk {
                     infoAboutVocabulary = false
-                    delegate?.infoAboutVocabulary(isTrue: infoAboutVocabulary)
+                    delegate?.infoAboutVocabulary(isHidden: infoAboutVocabulary)
                     downloadButtoon = false
-                    delegate?.downloadButtoonIsView(isTrue: downloadButtoon)
+                    delegate?.downloadButtoonIsView(isHidden: downloadButtoon)
                 } else {
                     infoAboutVocabulary = false
-                    delegate?.infoAboutVocabulary(isTrue: infoAboutVocabulary)
+                    delegate?.infoAboutVocabulary(isHidden: infoAboutVocabulary)
                     goToNextScreenBool = false
-                    delegate?.goToNextScreenView(isTrue: goToNextScreenBool)
+                    delegate?.goToNextScreenView(isHidden: goToNextScreenBool)
                 }
             }
         } catch {

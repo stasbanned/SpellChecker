@@ -8,10 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		55BBA82820A870AD008D44B0 /* Spellchecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BBA82720A870AD008D44B0 /* Spellchecker.swift */; };
-		55BBA82A20A870EE008D44B0 /* Vocabulary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BBA82920A870EE008D44B0 /* Vocabulary.swift */; };
+		55BBA82A20A870EE008D44B0 /* DownloaddVocabulary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BBA82920A870EE008D44B0 /* DownloaddVocabulary.swift */; };
 		55D7525D20AC3B210002D47A /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D7525C20AC3B210002D47A /* StartViewController.swift */; };
 		55D7525F20AC91490002D47A /* VocabularyCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D7525E20AC91490002D47A /* VocabularyCheck.swift */; };
-		55D7526120ACBBBC0002D47A /* DownloadVocabulary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D7526020ACBBBC0002D47A /* DownloadVocabulary.swift */; };
+		55D7526120ACBBBC0002D47A /* WriteVocabularyToFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D7526020ACBBBC0002D47A /* WriteVocabularyToFile.swift */; };
 		55EBC48B20A304E900417738 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EBC48A20A304E900417738 /* AppDelegate.swift */; };
 		55EBC48D20A304E900417738 /* SpellCheckerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EBC48C20A304E900417738 /* SpellCheckerViewController.swift */; };
 		55EBC49020A304E900417738 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55EBC48E20A304E900417738 /* Main.storyboard */; };
@@ -21,10 +21,10 @@
 
 /* Begin PBXFileReference section */
 		55BBA82720A870AD008D44B0 /* Spellchecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spellchecker.swift; sourceTree = "<group>"; };
-		55BBA82920A870EE008D44B0 /* Vocabulary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vocabulary.swift; sourceTree = "<group>"; };
+		55BBA82920A870EE008D44B0 /* DownloaddVocabulary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloaddVocabulary.swift; sourceTree = "<group>"; };
 		55D7525C20AC3B210002D47A /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		55D7525E20AC91490002D47A /* VocabularyCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyCheck.swift; sourceTree = "<group>"; };
-		55D7526020ACBBBC0002D47A /* DownloadVocabulary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadVocabulary.swift; sourceTree = "<group>"; };
+		55D7526020ACBBBC0002D47A /* WriteVocabularyToFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteVocabularyToFile.swift; sourceTree = "<group>"; };
 		55EBC48720A304E900417738 /* Vocabulary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vocabulary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55EBC48A20A304E900417738 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		55EBC48C20A304E900417738 /* SpellCheckerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellCheckerViewController.swift; sourceTree = "<group>"; };
@@ -67,9 +67,9 @@
 				55EBC48A20A304E900417738 /* AppDelegate.swift */,
 				55D7525C20AC3B210002D47A /* StartViewController.swift */,
 				55D7525E20AC91490002D47A /* VocabularyCheck.swift */,
-				55D7526020ACBBBC0002D47A /* DownloadVocabulary.swift */,
+				55D7526020ACBBBC0002D47A /* WriteVocabularyToFile.swift */,
 				55EBC48C20A304E900417738 /* SpellCheckerViewController.swift */,
-				55BBA82920A870EE008D44B0 /* Vocabulary.swift */,
+				55BBA82920A870EE008D44B0 /* DownloaddVocabulary.swift */,
 				55BBA82720A870AD008D44B0 /* Spellchecker.swift */,
 				55EBC48E20A304E900417738 /* Main.storyboard */,
 				55EBC49120A304EB00417738 /* Assets.xcassets */,
@@ -152,11 +152,11 @@
 			files = (
 				55D7525F20AC91490002D47A /* VocabularyCheck.swift in Sources */,
 				55D7525D20AC3B210002D47A /* StartViewController.swift in Sources */,
-				55BBA82A20A870EE008D44B0 /* Vocabulary.swift in Sources */,
+				55BBA82A20A870EE008D44B0 /* DownloaddVocabulary.swift in Sources */,
 				55BBA82820A870AD008D44B0 /* Spellchecker.swift in Sources */,
 				55EBC48D20A304E900417738 /* SpellCheckerViewController.swift in Sources */,
 				55EBC48B20A304E900417738 /* AppDelegate.swift in Sources */,
-				55D7526120ACBBBC0002D47A /* DownloadVocabulary.swift in Sources */,
+				55D7526120ACBBBC0002D47A /* WriteVocabularyToFile.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,14 +9,15 @@
 import UIKit
 
 class StartViewController: UIViewController, VocabularyCheckDelegate, DownloadVocabularyDelegate {
-    let check = VocabularyCheck()
-    let download = DownloadVocabulary()
-    let vocabulary = Vocabulary()
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        check.delegate = self
-        download.delegate = self
-    }
+    //var delegate: VocabularyCheckDelegate? = nil
+    lazy var check = VocabularyCheck(delegate: self)
+    lazy var download = WriteVocabularyToFile(delegate: self)
+    let vocabulary = DownloaVocabulary()
+//    required init?(coder aDecoder: NSCoder) {
+//        super.init(coder: aDecoder)
+//        check.delegate = self
+//        download.delegate = self
+//    }
     @IBOutlet weak var checkingProgressBar: UIProgressView!
     @IBOutlet weak var checkVocabularyButtonOutlet: UIButton!
     @IBOutlet weak var checkVocabularyLabel: UILabel!
@@ -53,49 +54,49 @@ class StartViewController: UIViewController, VocabularyCheckDelegate, DownloadVo
         goToSecondScreenButtonOutlet.isHidden = true
         downloadButtonOutlet.isHidden = true
     }
-    func checkProgresBarBool(isTrue: Bool) {
+    func checkProgresBarBool(isHidden: Bool) {
         DispatchQueue.main.async {
-            self.checkingProgressBar.isHidden = isTrue
+            self.checkingProgressBar.isHidden = isHidden
         }
     }
-    func infoAboutVocabulary(isTrue: Bool) {
+    func infoAboutVocabulary(isHidden: Bool) {
         DispatchQueue.main.async {
-            self.informationAboutVocabularyLabel.isHidden = isTrue
-            if isTrue {
+            self.informationAboutVocabularyLabel.isHidden = isHidden
+            if isHidden {
                 self.informationAboutVocabularyLabel.text = "File is OK"
             } else {
                 self.informationAboutVocabularyLabel.text = "File is not OK"
             }
         }
     }
-    func infoAboutVocabularyText(infoAboutVocabulary: String) {
+    func infoAboutVocabularyText(labelText: String) {
         DispatchQueue.main.async {
-            self.informationAboutVocabularyLabel.text = infoAboutVocabulary
+            self.informationAboutVocabularyLabel.text = labelText
         }
     }
-    func downloadButtoonIsView(isTrue: Bool) {
+    func downloadButtoonIsView(isHidden: Bool) {
         DispatchQueue.main.async {
-            self.downloadButtonOutlet.isHidden = isTrue
+            self.downloadButtonOutlet.isHidden = isHidden
         }
     }
-    func checkProgresBarCount(checkingProgressBar: Float) {
+    func checkProgresBarCount(progress: Float) {
         DispatchQueue.main.async {
-            self.checkingProgressBar.progress = checkingProgressBar
+            self.checkingProgressBar.progress = progress
         }
     }
-    func goToNextScreenView(isTrue: Bool) {
+    func goToNextScreenView(isHidden: Bool) {
         DispatchQueue.main.async {
-            self.goToSecondScreenButtonOutlet.isHidden = isTrue
+            self.goToSecondScreenButtonOutlet.isHidden = isHidden
         }
     }
-    func downloadProggresBarCount(downloadingProgressBar: Float) {
+    func downloadProggresBarCount(progress: Float) {
         DispatchQueue.main.async {
-            self.downloadingProgressBar.progress = downloadingProgressBar
+            self.downloadingProgressBar.progress = progress
         }
     }
-    func downloadProgresBarIsView(isTrue: Bool) {
+    func downloadProgresBarIsView(isHidden: Bool) {
         DispatchQueue.main.async {
-            self.downloadingProgressBar.isHidden = isTrue
+            self.downloadingProgressBar.isHidden = isHidden
         }
     }
 }
